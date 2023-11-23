@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Ubuntu&display=swap');
+
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  margin: 1%;
+  background-color: #9fb8ec;
+}
+
+a{
+  user-select: none;
+}

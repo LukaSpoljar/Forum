@@ -1,0 +1,79 @@
+.myInputField {
+  outline: none;
+  border: none;
+
+  border-radius: 0.1cm;
+  text-align: center;
+
+  padding: 0.15cm;
+  background-color: rgba(117, 141, 216, 0.6);
+}
+
+a {
+  width: fit-content;
+}
+
+/******* Admin Section *********/
+#adminWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#adminWrapper a{
+  display: block;
+  padding: 0.3cm;
+  background-color: rgba(137, 159, 229, 0.6);
+  border-radius: 0.2cm;
+}
+
+#adminWrapper_formWrapper {
+  width: 90%;
+}
+
+#adminWrapper_formWrapper form {
+  margin: 0.5cm 0px;
+}
+
+#adminWrapper_formWrapper form input {
+  margin: 0px 0.3cm;
+}
+
+
+/***** Info Section ****+**/
+#wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5cm;
+}
+
+#leftSide {
+  width: 70%;
+  height: 1cm
+}
+
+#rightSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 0px 0.5cm;
+}
+
+
+#allCommentsListTable {
+  padding: 0.3cm;
+}
+
+.elementPost {
+  background-color: rgba(128, 128, 128, 0.322);
+  border-radius: 5px;
+}
+
+
+#my-comment-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

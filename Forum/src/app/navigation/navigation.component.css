@@ -1,0 +1,25 @@
+
+ul {
+  list-style-type: none;
+  padding: 0px;
+  display: flex;
+
+  background-color: rgba(137, 159, 229, 0.6);
+  border-radius: 100cm;
+
+}
+
+li {
+  margin: 0.1cm;
+  padding: 0px;
+
+  border-radius: 100cm;
+}
+
+a {
+  display: block;
+  padding: 0.3cm;
+}
+
+
+

@@ -1,0 +1,33 @@
+<h1 style="margin: 20px; user-select: none">Register form</h1>
+
+
+<form class="signin-form" fxLayout="column" fxLayoutAlign="center center" [formGroup]="userRegisterForm" style="margin: 20px">
+  <fieldset class="form-group">
+    <input type="text" formControlName="username" placeholder="Username" >
+    <span id="username_error_message">Username must be at least 4 characters long</span>
+  </fieldset>
+  <fieldset class="form-group">
+    <input type="password" formControlName="password" placeholder="Password">
+    <span id="password_error_message">Password must be at least 1 character long</span>
+  </fieldset>
+  <fieldset class="form-group">
+    <input type="password" formControlName="confirmPassword" placeholder="Repeat password">
+    <span id="confirmed_password_error_message">Passwords must be same</span>
+  </fieldset>
+  <fieldset class="form-group">
+    <input type="text" formControlName="name" placeholder="Name">
+    <span id="name_error_message">Name must be at least 1 character long</span>
+  </fieldset>
+  <fieldset class="form-group">
+    <input type="text" formControlName="email" placeholder="Email">
+    <span id="email_error_message">Email is not correct</span>
+  </fieldset>
+
+  <button class="btn btn-success" type="submit" id="submitRegistrationButton" (click)="onRegister($event)">Register!</button>
+  <!--[disabled]="userRegisterForm.invalid"-->
+</form>
+
+<div style="margin: 20px; cursor:default;">
+  <a class="link-primary" (click)="myRoutes.navigateToLoginForm()">Back to login form</a>
+</div>
+

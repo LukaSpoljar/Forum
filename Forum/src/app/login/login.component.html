@@ -1,0 +1,29 @@
+<h1 style="margin: 20px">Login</h1>
+
+
+<form fxLayout="column" fxLayoutAlign="center center" [formGroup]="userLoginForm"
+      (keydown)="this.loginWarningRef.style = 'display: none;';"
+      style="margin: 20px">
+  <fieldset class="form-group">
+    <input type="text" formControlName="username" placeholder="Username">
+    <span id="username_error_message">Username must be at least 1 character long</span>
+  </fieldset>
+  <fieldset class="form-group">
+    <input type="password" formControlName="password" placeholder="Password">
+    <span id="password_error_message">Password must be at least 1 character long</span>
+  </fieldset>
+
+  <span id="login_error_message">Username or password is not correct</span>
+
+
+  <div style="margin: 20px">
+    <button class="btn btn-success" id="buttonLogin" style="margin: 5px" (click)="clickedLogin($event)">Login</button>
+    <button class="btn btn-warning" id="buttonRegister" style="margin: 5px" (click)="myRoutes.navigateToRegisterForm()">
+      Register
+    </button>
+  </div>
+
+</form>
+
+
+

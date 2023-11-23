@@ -1,0 +1,113 @@
+<div id="wrapper" *ngIf="loggedUser">
+
+  <div id="leftSide">
+
+
+    <div><!-- *ngIf="myData.allComments.length > 0" -->
+
+      <h6 *ngIf="myPermission == false">Posts by {{loggedUser.Name}} ({{myData.filteredAllComments.length}}):</h6>
+      <h6 *ngIf="myPermission == true">ADMIN ({{myData.filteredAllComments.length}} posts):</h6>
+
+      <input class="myInputField" [(ngModel)]="searchQuery" placeholder="Search by message"
+        (keyup)="searchByTextComment()">
+
+
+      <div id="allCommentsListTable" *ngFor="let onePost of myData.filteredAllComments; let i = index ">
+
+        <div appHighlight>
+
+          <div class="card-body elementPost">
+            <div id="my-comment-header">
+
+              <h6 class="card-title">by {{onePost.Author}} ({{onePost.Timestamp | date : "dd.MM.yyyy. - h:m a"}})</h6>
+
+              <button [ngClass]="paintLikeButton(i)" (click)="increaseNumberOfLikes(i)"
+                *ngIf="onePost.isBeingEdited == false">Like
+                <p style="display: inline">
+                  ({{onePost.LikeInfo.LikesCounter}})
+                </p>
+              </button>
+
+            </div>
+
+
+            <div *ngIf="onePost.isBeingEdited; else showUneditableCommentMessage">
+              <textarea class="form-class" rows="5" cols="60" [(ngModel)]="onePost.Comment" ngDefaultControl></textarea>
+            </div>
+            <ng-template #showUneditableCommentMessage>
+              <p class="card-text"> {{onePost.Comment}}</p>
+            </ng-template>
+
+
+            <div *ngIf="onePost.UserID == loggedUser.ID || myPermission">
+
+              <a style="display:inline;" class="btn btn-danger" (click)="deleteExistingPost(i)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                  <path fill-rule="evenodd"
+                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                </svg>
+                Delete post</a>
+
+              <a class="btn btn-warning"
+                [ngStyle]="onePost.isBeingEdited ? {'display' : 'none'} : {'display' : 'inline'} "
+                (click)="editExistingPost(i)" ngDefaultControl>Edit post</a>
+              <a class="btn btn-warning"
+                [ngStyle]="onePost.isBeingEdited ? {'display' : 'inline'} : {'display' : 'none'} "
+                (click)="doneEditingExistingPost(i)" ngDefaultControl>Done editing</a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!--
+    <button class="btn btn-success" [ngStyle]="isNewPostBeingMaking ? {'display' : 'none'} : {'display' : 'block'}" (click) = "startMakingNewPost()">Add new post</button>
+    <button class="btn btn-danger" [ngStyle]="isNewPostBeingMaking ? {'display' : 'block'} : {'display' : 'none'}" (click)="endMakingNewPost()">Cancel</button>
+
+
+    <div [ngStyle]="isNewPostBeingMaking && loggedUser.Name ? {'display' : 'block'} : {'display' : 'none'} " >
+
+      <p><strong>User:</strong></p>
+      <input type="text" [(ngModel)]="loggedUser.Name" disabled><br>
+
+      <p><strong>Comment:</strong></p>
+      <textarea  rows="8" cols="50" [(ngModel)]="justWritingComment"></textarea><br>
+
+      <button [ngClass]="justWritingComment.length == 0 ? 'btn btn-danger' : 'btn btn-success'" class="btn btn-success" (click)="addNewPost()" [disabled]="justWritingComment.length == 0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89.471-1.178-1.178.471L5.93 9.363l.338.215a.5.5 0 0 1 .154.154l.215.338 7.494-7.494Z"/>
+        </svg>
+        Send</button>
+     </div>
+    -->
+
+    <div>
+      <a class="link-primary" (click)="myRoutes.navigateToHome()">Back</a>
+    </div>
+
+  </div>
+
+
+  <div id="rightSide">
+
+    <div style="height: 80px; display:flex; justify-content: start; align-items: center">
+      <p>User data:</p>
+    </div>
+
+    <div>
+      <p>Username: {{loggedUser.Username}}</p>
+      <p>E-mail: {{loggedUser.Email}}</p>
+      <p>Name: {{loggedUser.Name}}</p>
+    </div>
+
+  </div>
+
+</div>
